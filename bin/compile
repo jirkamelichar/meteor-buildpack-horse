@@ -213,6 +213,9 @@ ls -la
 echo "-----> DEBUG(3): get folder sizes in current directory"
 du -hs ./*
 
+echo "-----> DEBUG(4): removing node_modules folder"
+rm -rf ./node_modules
+
 #
 # Environment
 #
