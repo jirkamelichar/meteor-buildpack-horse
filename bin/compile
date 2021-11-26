@@ -165,6 +165,11 @@ if [ -e "$APP_SOURCE_DIR"/package.json ]; then
   HOME=$METEOR_DIR $METEOR yarn
 fi
 
+echo "-----> DEBUG(1): list current directory"
+ls -la
+echo "-----> DEBUG(1): get folder sizes in current directory"
+du -hs ./*
+
 # Related to https://github.com/meteor/meteor/issues/2796 and 
 # https://github.com/meteor/meteor/issues/2606.  Some packages only build their
 # assets at runtime, and thus they are not available for bundling unless meteor
@@ -176,6 +181,11 @@ if [ -n "${BUILDPACK_PRELAUNCH_METEOR+1}" ]; then
   HOME=$METEOR_DIR $METEOR remove-platform android || true
   HOME=$METEOR_DIR timeout -s9 180 $METEOR --settings settings.json || true
 fi
+
+echo "-----> DEBUG(2): list current directory"
+ls -la
+echo "-----> DEBUG(2): get folder sizes in current directory"
+du -hs ./*
 
 # Now on to bundling. Don't put the bundle in $APP_CHECKOUT_DIR during
 # bundling, or it will recurse, trying to bundle up its own bundling.
@@ -197,6 +207,11 @@ if [ -e "$COMPILE_DIR"/app/programs/server/package.json ]; then
   HOME=$METEOR_DIR $METEOR yarn --production
   cd "$APP_SOURCE_DIR"
 fi
+
+echo "-----> DEBUG(3): list current directory"
+ls -la
+echo "-----> DEBUG(3): get folder sizes in current directory"
+du -hs ./*
 
 #
 # Environment
